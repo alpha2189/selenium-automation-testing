@@ -1,0 +1,26 @@
+# selenium-automation-testing
+basic beginners automation testing steps
+
+
+Testing - Opening chrome with chromedriver:
+  
+  package intotestcase;
+  import org.openqa.selenium.WebDriver;
+  import org.openqa.selenium.chrome.ChromeDriver;
+  
+  pubic class Demo;
+    
+      public static void main (String[] args) {
+      
+            //Class name = ChromeDriver,
+            //x driver =  new x();
+           
+      
+        System.setProperty("WebDriver.chrome.driver", "C:\\chromedriver.exe"); //into C: is th executable chromedriver.exe
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://google.com"); //opens chrome and google page
+        System.out.println(driver.getTitle()); // in console it prints out the page title.
+        
+
+
+

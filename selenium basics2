@@ -11,3 +11,10 @@ driver.get("http://yahoo.com");  //navigate in another page
 driver.navigate().back();  //navigates back
 driver.close();  //after the test the current browser closes
 driver.quit(); //closes all browsers by selenium script
+
+
+**
+driver.get("http://facebook.com");  //navigates to facebook
+driver.findElement(By.id("email")).sendKeys("....your email"); //goes and finds the email and is sendKeysbrackets you have to put your real email in order to log in
+driver.findElement(By.linktext("Forgot account?")).click();  //it finds the forgot account linktext and clicks it.
+

@@ -1,0 +1,13 @@
+System.setProperty("Webdriver.chrome.driver", "C:\\chromedriver.exe");
+WebDriver driver - new ChromeDriver();
+driver.get("http://google.com"); //hits the URL on the browser
+System.out.println(driver.getTitle()); //validates if the page title is correct
+
+
+System.out.println(driver.getCurrentUrl()); //validates if we landed on correct URL
+System.out.println(driver.getPageSource());  //prints the page source
+
+driver.get("http://yahoo.com");  //navigate in another page 
+driver.navigate().back();  //navigates back
+driver.close();  //after the test the current browser closes
+driver.quit(); //closes all browsers by selenium script

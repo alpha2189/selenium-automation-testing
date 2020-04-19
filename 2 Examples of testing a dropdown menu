@@ -1,0 +1,48 @@
+2 Examples of testing a Dropdown menu.
+
+
+
+
+package testing1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Example22 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		
+		///FIRST EXAMPLE
+		///Select in a Dropdown menu
+		
+		//driver.get("http://book.theautomatedtester.co.uk/chapter1");
+		//Select s = new Select(driver.findElement(By.id("selecttype")));
+		//s.selectByValue("Selenium Grid");
+		
+		//It works only if it has a select class
+		
+		
+		////SECOND EXAMPLE
+		driver.get("http://spicejet.com");//we visit the page
+		driver.findElement(By.id("divpaxinfo")).click();//it navigates to choose how many adults
+		
+		
+		//we click 3 times for 3 adults
+		driver.findElement(By.id("hredIncAdt")).click();
+		driver.findElement(By.id("hredIncAdt")).click();
+		driver.findElement(By.id("hredIncAdt")).click();
+		//we clicked for 3 adults
+		driver.findElement(By.id("btnclosepaxoption")).click();//we push the done button
+		
+		//if we want to see how many adults the automate test clicked
+			System.out.println(driver.findElement(By.id("divpaxinfo")).getText());
+			
+		
+	}
+
+}

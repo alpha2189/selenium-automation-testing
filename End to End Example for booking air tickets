@@ -1,0 +1,68 @@
+makemytrip.com
+Choose the airport from where you are going to travel, and where you want to go!
+One way trip!
+Choose the date you want to travel.
+Chosse the reason of your travel.
+Submit to see the flights!
+If there are no flights it redirects you in main page!
+Closes the test window!
+
+I am explaining everything, in the comments!
+Beginner End to End example of Selenium automate testing!
+
+package testing1;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.testng.Assert;
+
+public class end2endExample {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://www.makemytrip.com/");//go to page
+		driver.findElement(By.id("fromCity")).click(); //wipes out the data from the box
+		
+		//finding xpath by inspect element
+		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div/input")).sendKeys("ATHENS");//writes the first three letters for Athens airport
+		Thread.sleep(2500);//delay 2,5
+		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div/input")).sendKeys(Keys.ARROW_DOWN);//choses athens and press Enter
+		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div/input")).sendKeys(Keys.ENTER);
+		
+		
+		
+		///finding xpath by using Chropath
+		driver.findElement(By.xpath("//input[@placeholder='To']")).click(); //wipes out the data from the box
+		driver.findElement(By.xpath("//input[@placeholder='To']")).sendKeys("ROME");//writes the first three letters for Rome(italy) airport
+		Thread.sleep(2500);//delay 2,5
+		driver.findElement(By.xpath("//input[@placeholder='To']")).sendKeys(Keys.ARROW_DOWN);//chooses  and press Enter
+		driver.findElement(By.xpath("//input[@placeholder='To']")).sendKeys(Keys.ENTER);
+		
+		//it picks up one way travel
+		//It picks up 23rd of april to travel
+		driver.findElement(By.cssSelector("body.desktop:nth-child(2) div.bgGradient div.minContainer div.widgetSection.appendBottom40 div.fsw.widgetOpen div.fsw_inner:nth-child(1) div.fsw_inputBox.dates.inactiveWidget.activeWidget:nth-child(4) div.datePickerContainer:nth-child(2) div.flightCalOverlay div.dayPickerFlightWrap div.RangeExample.oneWay div.DayPicker div.DayPicker-wrapper div.DayPicker-Months div.DayPicker-Month:nth-child(1) div.DayPicker-Body div.DayPicker-Week:nth-child(4) > div.DayPicker-Day:nth-child(5)")).click();
+		
+		//Why you travel?? asking
+		// selects traveling for leisure
+		driver.findElement(By.xpath("//div[contains(@class,'fsw_inputBox travelFor inactiveWidget')]")).click();
+		driver.findElement(By.xpath("//li[contains(text(),'Leisure')]")).click();
+		//Search for air tickets by submitting the info!
+		driver.findElement(By.xpath("//a[contains(@class,'primaryBtn font24 latoBold widgetSearchBtn')]")).click();
+		
+		
+		//If no flights found!!  Then it goes back to first page!!
+		Thread.sleep(15000L);
+		driver.findElement(By.xpath("//a[@class='fli_secondry_btn btn']")).click();
+		
+		//closes the chrome(test) window
+		driver.quit();
+		}
+
+	}

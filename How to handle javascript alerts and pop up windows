@@ -1,0 +1,44 @@
+This is an example of how to handle javascript alerts and pop up windows with selenium automate testing!
+
+package testing1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Example4 {
+
+	public static void main(String[] args) throws InterruptedException {
+			
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");//go to page
+		
+		//how to handle javascript pop ups
+		driver.findElement(By.id("name")).sendKeys("alex_pappas");
+		Thread.sleep(1000);
+		driver.findElement(By.id("alertbtn")).click();
+    
+		//Grabs the text that is in the alert or in the pop up window
+		driver.switchTo().alert().getText();
+		Thread.sleep(1000);
+    
+		//we send the text that we grabbed in our console to see it!
+		System.out.println(driver.switchTo().alert().getText());
+		//accept alert-pop up window clicking OK
+		driver.switchTo().alert().accept();
+		
+		
+		//clicks the confirm button
+		//prints in our console the text of the pop up
+		//and in the pop up we have 2 options(Ok and Cancel)
+		//it clicks cancel.
+		driver.findElement(By.id("confirmbtn")).click();
+		System.out.println(driver.switchTo().alert().getText());
+		driver.switchTo().alert().dismiss();
+		
+		
+			
+	}
+
+}

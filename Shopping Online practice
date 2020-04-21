@@ -1,0 +1,61 @@
+Shopping online practice exercise, automation testing of an eshop end to end.
+In order to run the test in your compiler you have to become a 
+member of [https://rahulshettyacademy.com/ - (there are online automation examples in order to practice)].
+take a look.
+
+
+package testing1;
+
+import java.awt.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ShoppingOnline {
+
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		 System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
+			WebDriver driver = new ChromeDriver();
+			driver.manage().window().maximize();  //maximizes the browser window.
+			driver.get("https://rahulshettyacademy.com/seleniumPractise/#/"); //goes to the page
+			
+			java.util.List<WebElement> products = driver.findElements(By.cssSelector("h4.product-name")); ///all the products have the 
+			
+			for(int i=0;i<products.size();i++) /// creation of a for-loop because there are 30 vegetables with the same name ("h4.product-name")
+				
+			{
+				
+			String name=products.get(i).getText();
+			if (name.contains("Cucumber")){
+				//clicks add to cart when it finds cucumber
+				driver.findElements(By.xpath("//button[text()='ADD TO CART']")).get(i).click();
+				break;
+				
+			}
+		}
+			driver.findElement(By.xpath("//a[@class='cart-icon']//img[contains(@class,'')]")).click(); //clicks the cart
+			Thread.sleep(1000);
+			driver.findElement(By.xpath("//button[contains(text(),'PROCEED TO CHECKOUT')]")).click(); //click procced to checkout
+			Thread.sleep(1000);
+			
+			driver.findElement(By.xpath("//button[contains(text(),'Place Order')]")).click(); //placing order
+			Thread.sleep(1000);
+			driver.findElement(By.xpath("//div[@class='wrapperTwo']//div//select")).click();//selecting the dropdown menu to select the country to be shipped
+			Thread.sleep(1000);
+			
+			driver.findElement(By.xpath("//option[contains(text(),'Greece')]")).click(); //Selecting Greece from the dropdown menu
+			driver.findElement(By.xpath("//input[@class='chkAgree']")).click();  //accepts conditions
+			Thread.sleep(1000);
+      //it proceeds completing order and redirecting you in Home page
+			driver.findElement(By.cssSelector("div.container div.products-wrapper:nth-child(2) div.products div.wrapperTwo > button:nth-child(11)")).click();
+			
+			Thread.sleep(1000);
+			driver.quit();
+			
+			
+	}
+}

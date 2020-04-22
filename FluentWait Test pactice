@@ -1,0 +1,49 @@
+This is a fluentWait test i've been practicing.
+After several hours of searching information and writing scripts it worked.
+Take a look.
+
+
+package testing1;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
+import java.util.function.Function;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+public class FluentWaitTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
+	WebDriver driver=new ChromeDriver();
+	driver.get("https://the-internet.herokuapp.com/dynamic_loading/1"); ///goes to page
+
+	driver.findElement(By.cssSelector("[id='start'] button")).click(); ///clicks the start button
+		///gives a duration of 30 seconds and its checking every 3 seconds
+	
+	Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(30))
+					.pollingEvery(Duration.ofSeconds(3)).ignoring(NoSuchElementException.class);
+		///It waits until the webelement it is found
+	WebElement foo = wait.until(new Function<WebDriver, WebElement>(){
+		public WebElement apply(WebDriver driver) {
+			///checking if the webelement is visible
+			if(driver.findElement(By.cssSelector("[id='finish'] h4")).isDisplayed()) {
+					
+			return driver.findElement(By.cssSelector("[id='finish'] h4"));
+			}
+			else return null;
+			}
+			
+		});
+	
+	///and here it prints in our console the message that appears in the webpage
+	System.out.println(driver.findElement(By.cssSelector("[id='finish'] h4")).getText());
+	}
+}	

@@ -1,0 +1,47 @@
+This is an exercise for switching between 2 windows with selenium for automation testing.
+It's page that comes after the main one(page) its called a child
+
+package testing1;
+
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class MultipleWindowsHandle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		 driver.manage().window().maximize();
+		driver.get("https://accounts.google.com/signup");//go to page
+		//finds and clicks the button help(βοήθεια)
+		driver.findElement(By.xpath("//li[1]//a[1]")).click();
+		System.out.println("Before Switching");/// prints in our console the message
+		System.out.println(driver.getTitle());////prints in our console the page that we are.
+												///and now we know that the parent page is this.
+		
+		 //we call set and iterator in order to handle the windows
+		Set<String>ids=driver.getWindowHandles();
+		Iterator<String> it=ids.iterator();
+		String parentid=it.next();
+		String childid=it.next();
+		
+		//we switch to childid ( the page that came alive after pushing the button help)
+		driver.switchTo().window(childid);
+		System.out.println("After Switching");
+		System.out.println(driver.getTitle());
+		//we switch again to parentid(the first page that opened)
+		driver.switchTo().window(parentid);
+		System.out.println("sqitch again in parent page!");
+		System.out.println(driver.getTitle());
+		
+		
+
+	}
+
+}
